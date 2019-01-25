@@ -17,7 +17,8 @@ $('.js-dog-pictures-form').submit(function(event){
       }); 
   }
 });
-
+// NEXT -- text block with server fail message - no breed of that name on server!
+// THEN -- text block with server success message - found the breed!
 $('.js-dog-breed-form').submit(function(event){
   event.preventDefault();
   const breedValue = $('.js-breed-input').val();
@@ -27,6 +28,13 @@ $('.js-dog-breed-form').submit(function(event){
     .then( data => {
       console.log(data);
       console.log(data.message);
-      $('.js-dog-image-grid').prepend( `<img src="${data.message}" class="dog-picture" />` );
+      if ( data.status === 'success' ) {
+        $('.breed-return-message').html(`<p>${breedValue} found!</p>`);
+        $('.js-dog-image-grid').prepend( `<img src="${data.message}" class="dog-picture" alt="image of a ${breedValue} dog breed"/>` );
+      }
+      else if ( data.status === 'error' ) {
+        $('.breed-return-message').html(`<p>${data.message} :(</p>`);
+        $('.js-dog-image-grid').html();
+      }
     });
 });
