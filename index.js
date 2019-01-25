@@ -1,0 +1,14 @@
+/* global $ */
+/* eslint-disable no-console */
+'use strict';
+
+fetch('https://dog.ceo/api/breeds/image/random')
+  .then( response => response.json() )
+  .then( data => {
+    console.log(data);
+    console.log(data.message);
+    $('.js-dog-image-grid').html( `<img src="${data.message}" class="dog-picture" />` );
+    // const els = data.map( repo => `<li>${repo.name}</li>` );
+    // $('.results').html(els);
+    // $('.results').prepend(`<p>${data.length}</p>`);
+  });
