@@ -5,7 +5,8 @@
 $('.js-dog-pictures-form').submit(function(event){
   event.preventDefault();
   const inputValue = $('.js-number-input').val();
-
+  $('.breed-return-message').html('');
+  $('.js-dog-image-grid').empty();
   for (let i = 1; i <= inputValue; i++) {
     console.log('For loop running'); 
     fetch('https://dog.ceo/api/breeds/image/random')  
@@ -13,6 +14,7 @@ $('.js-dog-pictures-form').submit(function(event){
       .then( data => {
         console.log(data);
         console.log(data.message);
+        
         $('.js-dog-image-grid').prepend( `<img src="${data.message}" class="dog-picture" />` );
       }); 
   }
@@ -21,6 +23,7 @@ $('.js-dog-pictures-form').submit(function(event){
 // THEN -- text block with server success message - found the breed!
 $('.js-dog-breed-form').submit(function(event){
   event.preventDefault();
+  $('.js-dog-image-grid').empty();
   const breedValue = $('.js-breed-input').val();
   console.log(breedValue);
   fetch(`https://dog.ceo/api/breed/${breedValue}/images/random`) 
@@ -29,12 +32,13 @@ $('.js-dog-breed-form').submit(function(event){
       console.log(data);
       console.log(data.message);
       if ( data.status === 'success' ) {
+        
         $('.breed-return-message').html(`<p>${breedValue} found!</p>`);
         $('.js-dog-image-grid').prepend( `<img src="${data.message}" class="dog-picture" alt="image of a ${breedValue} dog breed"/>` );
       }
       else if ( data.status === 'error' ) {
         $('.breed-return-message').html(`<p>${data.message} :(</p>`);
-        $('.js-dog-image-grid').html();
+        
       }
     });
 });
