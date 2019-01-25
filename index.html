@@ -11,10 +11,19 @@
 <body>
   <div class="master-container js-master-container" for="master wrapper for all content">
     <h1>Random Dog Pictures!</h1>
-    <form for="inputting number of dog Pictures" class="dog-pictures-form js-dog-pictures-form">
-      <input type="number" for="selecting number of dog Pictures"  class="number-input js-number-input" value="3" min="1" max="50"/>
+    <form for="inputting number of random dog Pictures" class="dog-pictures-form js-dog-pictures-form">
+      <label for="number-input">Select a number of random dog pictures!</label><br>
+      <input type="number" for="selecting number of dog Pictures"  class="number-input js-number-input" value="3" min="1" max="50"/><br>
       <input type="submit" for="submitting the form" class="submit-button js-submit-button" />
     </form><br>
+    <form for="selecting a dog breed for picture" class="dog-breed-form js-dog-breed-form">
+      <label for="breed-input">Select a dog breed to display!</label><br>
+      <input type="text" for="breed name selection" class="breed-input js-breed-input" placeholder="hound" value="hound" /><br>
+      <input type="submit" for="submitting the form" class="submit-button js-submit-button" />
+    </form>
+    <div class="breed-return-message">
+
+    </div>
     <div class="dog-image-grid js-dog-image-grid">
 
     </div>
